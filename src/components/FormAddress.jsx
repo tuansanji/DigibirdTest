@@ -25,7 +25,7 @@ const FormAddress = ({ addressCurrent, register }) => {
     username: yup
       .string()
       .min(6, "Quá ngắn!")
-      .max(18, "Quá dài!")
+      .max(50, "Quá dài!")
       .required("Vui lòng nhập"),
     phone: yup
       .string()
@@ -90,7 +90,7 @@ const FormAddress = ({ addressCurrent, register }) => {
             .then((res) => {
               showMessage("success", res?.message || "Thành công", 2);
               setTimeout(() => {
-                navigate(-1);
+                navigate("/address");
               }, 1500);
             })
             .catch((err) => {
@@ -167,7 +167,7 @@ const FormAddress = ({ addressCurrent, register }) => {
                     if (
                       !value.startsWith(" ") &&
                       !value.endsWith("  ") &&
-                      /^.{0,30}$/.test(value)
+                      /^.{0,50}$/.test(value)
                     ) {
                       formik.handleChange(e);
                     }
