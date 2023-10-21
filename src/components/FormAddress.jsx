@@ -35,11 +35,9 @@ const FormAddress = ({ addressCurrent, register }) => {
         "Số điện thoại không hợp lệ. Hãy nhập đúng 10 số và bắt đầu bằng số 0.",
         (value) => {
           if (!value) return false; // Kiểm tra nếu giá trị là null hoặc undefined.
-
           const stringValue = value.toLocaleString("en-US", {
             useGrouping: false, // Tắt sử dụng dấu phân cách hàng nghìn
           });
-
           return !value.startsWith("0")
             ? stringValue.length === 9
             : stringValue.length === 10;
@@ -73,6 +71,7 @@ const FormAddress = ({ addressCurrent, register }) => {
         },
     onSubmit: (data) => {
       showMessage("loading", "Loading", 2);
+      // Dựa theo trang thái của form để xác định đang đăng kí hay là chỉnh sửa
       register
         ? addressApi
             .addAddress({
@@ -91,8 +90,9 @@ const FormAddress = ({ addressCurrent, register }) => {
             .then((res) => {
               showMessage("success", res?.message || "Thành công", 2);
               setTimeout(() => {
+                // không biết phải do api không nhưng dù đã được thông báo thành công nhưng không thấy dữ liệu mới được thêm vào
                 navigate("/address");
-              }, 2000);
+              }, 1500);
             })
             .catch((err) => {
               showMessage(
@@ -254,7 +254,7 @@ const FormAddress = ({ addressCurrent, register }) => {
                     formik.setFieldValue("district", ""); // Đặt giá trị rỗng cho trường district
                   }}
                   name="city"
-                  className="select !h-[2.4rem] min-h-[2rem] appearance-none block w-full px-3  py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm "
+                  className="select !h-[2.5rem] min-h-[2rem] appearance-none block w-full pt-[0.3rem] pb-3  py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm "
                 >
                   <option value="" disabled>
                     Chọn tỉnh/ thành phố
@@ -286,7 +286,7 @@ const FormAddress = ({ addressCurrent, register }) => {
                   disabled={!formik.values.city}
                   onChange={formik.handleChange}
                   name="district"
-                  className="select !h-[2.4rem] min-h-[2rem] appearance-none block w-full px-3  py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm "
+                  className="select !h-[2.5rem] min-h-[2rem] appearance-none block w-full pt-[0.3rem] pb-3  py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm "
                 >
                   <option value="" disabled>
                     Chọn quận/ huyện

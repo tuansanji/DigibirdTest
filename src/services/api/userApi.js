@@ -1,6 +1,6 @@
 import axiosClient from "../axiosClient";
 
-// Em thử đăng nhập bằng sdt zalo mình nhưng không được
+// Em thử đăng nhập bằng sdt zalo mình nhưng không được nên lấy giá trị default trong pơstman
 const demoUser = {
   id: "0869017747",
   name: "Phát",

@@ -8,6 +8,8 @@ const axiosClient = axios.create({
   },
   //   paramsSerializer: params => queryString.stringify(params),
 });
+
+// lấy token của người dùng
 const getAccessToken = () => {
   const state = store.getState();
   return state?.auth?.userInfo?.token;

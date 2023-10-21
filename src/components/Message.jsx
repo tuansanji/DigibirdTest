@@ -5,6 +5,7 @@ const useMessageApi = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const messageRef = useRef(messageApi);
 
+  // Sử dụng toast của antd để custom
   useEffect(() => {
     messageRef.current = messageApi;
   }, [messageApi]);
