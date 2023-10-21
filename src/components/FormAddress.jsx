@@ -90,8 +90,7 @@ const FormAddress = ({ addressCurrent, register }) => {
             .then((res) => {
               showMessage("success", res?.message || "Thành công", 2);
               setTimeout(() => {
-                // không biết phải do api không nhưng dù đã được thông báo thành công nhưng không thấy dữ liệu mới được thêm vào
-                navigate("/address");
+                navigate(-1);
               }, 1500);
             })
             .catch((err) => {
